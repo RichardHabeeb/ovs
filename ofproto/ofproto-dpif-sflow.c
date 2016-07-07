@@ -777,6 +777,7 @@ dpif_sflow_set_options(struct dpif_sflow *ds,
     receiver = sfl_agent_addReceiver(ds->sflow_agent);
     sfl_receiver_set_sFlowRcvrOwner(receiver, "Open vSwitch sFlow");
     sfl_receiver_set_sFlowRcvrTimeout(receiver, 0xffffffff);
+    sfl_receiver_set_sFlowRcvrMaximumDatagramSize(receiver, ds->options->rcvr_max_len);
 
     /* Set the sampling_rate down in the datapath. */
     ds->probability = MAX(1, UINT32_MAX / ds->options->sampling_rate);
@@ -790,7 +791,6 @@ dpif_sflow_set_options(struct dpif_sflow *ds,
     sampler = sfl_agent_addSampler(ds->sflow_agent, &dsi);
     sfl_sampler_set_sFlowFsPacketSamplingRate(sampler, ds->options->sampling_rate);
     sfl_sampler_set_sFlowFsMaximumHeaderSize(sampler, ds->options->header_len);
-    sfl_receiver_set_sFlowRcvrMaximumDatagramSize(sampler, ds->options->rcvr_max_len);
     sfl_sampler_set_sFlowFsReceiver(sampler, RECEIVER_INDEX);
 
     /* Add a counter poller for the bridge so we can use it to send
