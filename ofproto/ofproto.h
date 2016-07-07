@@ -67,6 +67,7 @@ struct ofproto_sflow_options {
     uint32_t sampling_rate;
     uint32_t polling_interval;
     uint32_t header_len;
+    uint32_t rcvr_max_len;
     uint32_t sub_id;
     char *agent_device;
     char *control_ip;

@@ -790,6 +790,7 @@ dpif_sflow_set_options(struct dpif_sflow *ds,
     sampler = sfl_agent_addSampler(ds->sflow_agent, &dsi);
     sfl_sampler_set_sFlowFsPacketSamplingRate(sampler, ds->options->sampling_rate);
     sfl_sampler_set_sFlowFsMaximumHeaderSize(sampler, ds->options->header_len);
+    sfl_receiver_set_sFlowRcvrMaximumDatagramSize(sampler, ds->options->rcvr_max_len);
     sfl_sampler_set_sFlowFsReceiver(sampler, RECEIVER_INDEX);
 
     /* Add a counter poller for the bridge so we can use it to send

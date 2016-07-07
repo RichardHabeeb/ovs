@@ -4589,6 +4589,11 @@
       If not specified, the default is 128 bytes.
     </column>
 
+    <column name="rcvr_max_len">
+      Maximum number of bytes of an sFlow packet to send to the collector.
+      If not specified, the default is 1400 bytes.
+    </column>
+
     <column name="polling">
       Polling rate in seconds to send port statistics to the collector.
       If not specified, defaults to 30 seconds.

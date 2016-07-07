@@ -1125,6 +1125,11 @@ bridge_configure_sflow(struct bridge *br, int *sflow_bridge_number)
         oso.header_len = *cfg->header;
     }
 
+    oso.rcvr_max_len = SFL_DEFAULT_DATAGRAM_SIZE;
+    if (cfg->rcvr_max_len) {
+        oso.rcvr_max_len = *cfg->rcvr_max_len;
+    }
+
     oso.sub_id = (*sflow_bridge_number)++;
     oso.agent_device = cfg->agent;
 
